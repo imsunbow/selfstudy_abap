@@ -1,5 +1,5 @@
 *------------------------------------------------------------*
-* 1. INITIALIZATION - SET DEFAULT DATE
+* INITIALIZATION - SET DEFAULT DATE
 *------------------------------------------------------------*
 INITIALIZATION.
   " Declare local variables for current date and month
