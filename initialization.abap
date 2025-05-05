@@ -1,19 +1,24 @@
 *------------------------------------------------------------*
-* 1. INITIALIZATION - 기본 날짜 설정
+* 1. INITIALIZATION - SET DEFAULT DATE
 *------------------------------------------------------------*
 INITIALIZATION.
-  DATA: lv_curr_date  TYPE sy-datum,
-        lv_curr_month TYPE char6.
+  " Declare local variables for current date and month
+  DATA: LV_CURR_DATE  TYPE SY-DATUM,    " Current date (YYYYMMDD)
+        LV_CURR_MONTH TYPE CHAR6.       " Current year and month (YYYYMM)
 
-  lv_curr_date  = sy-datum.
-  lv_curr_month = lv_curr_date(6).
+  " Get system date
+  LV_CURR_DATE  = SY-DATUM.
+  " Extract year and month from the date
+  LV_CURR_MONTH = LV_CURR_DATE(6).
 
-  CONCATENATE lv_curr_month '01' INTO pa_month.
+  " Concatenate with '01' to get the first day of the current month
+  CONCATENATE LV_CURR_MONTH '01' INTO PA_MONTH.
 
-  WRITE: / '현재 월의 시작일:', pa_month.
+  " Display the first day of the current month
+  WRITE: / 'FIRST DATE OF THIS MONTH :', PA_MONTH.
 
-  " 다른 초기화 예시: 아이콘 텍스트 설정
-  gs_dyntxt-icon_id = icon_display.
-  gs_dyntxt-icon_text = '기본정보 보기'.
-  gs_dyntxt-quickinfo = '사원 상세 정보 조회'.
-  sscrfields-functxt_01 = gs_dyntxt.
+  " Example: Set icon text for function key on selection screen
+  GS_DYNTXT-ICON_ID     = ICON_DISPLAY.                     " Icon symbol
+  GS_DYNTXT-ICON_TEXT   = 'ICON_TEXT'.                      " Button label
+  GS_DYNTXT-QUICKINFO   = 'WATCH OTHER DETAILS OF THE TABLE'. " Tooltip
+  SSCRFIELDS-FUNCTXT_01 = GS_DYNTXT.                        " Assign to function key F1
