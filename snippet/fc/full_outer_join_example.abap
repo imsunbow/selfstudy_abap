@@ -4,8 +4,8 @@
 * This snippet emulates a full outer join using a combination
 * of left outer join and right outer join with internal tables.
 
-Notes: There's no way to use FULL-OUTER JOIN directly in abap-syntax. That's why we cannot perform join at once.
- Instead, We've got to join at twice, like left join first and right join afterwards.
+* Notes: There's no way to use FULL-OUTER JOIN directly in abap-syntax. That's why we cannot perform join at once.
+* Instead, We've got to join at twice, like left join first and right join afterwards.
 
 * ⚠️ Performance Notes:
 * We're using READ ... BINARY SEARCH (BS) for matching.
