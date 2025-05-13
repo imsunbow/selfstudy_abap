@@ -6,6 +6,14 @@
 
 Notes: There's no way to use FULL-OUTER JOIN directly in abap-syntax. That's why we cannot perform join at once.
  Instead, We've got to join at twice, like left join first and right join afterwards.
+
+* ⚠️ Performance Notes:
+* We're using READ ... BINARY SEARCH (BS) for matching.
+* So make sure to SORT the internal table by the same key **before** doing BS.
+*
+* In this snippet, the dataset is small for demonstration purposes.
+* But in real use (e.g. 10,000+ rows), BS significantly outperforms linear search.
+* Sorting once and using BS in a loop is much more efficient than nested LOOPs.
 *------------------------------------------------------------*
 
 * Structure for table A
