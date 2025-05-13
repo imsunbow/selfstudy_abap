@@ -1,6 +1,10 @@
 *------------------------------------------------------------*
-* Dynamically toggle selection screen fields based on radio buttons
+* Dynamically toggle selection screen fields based on radio button.
+* Notes:
+* - CH_BOX is placed in the same block but rendered below the radio buttons.
+* - CH_BOX becomes invisible when RDO3 is selected.
 *------------------------------------------------------------*
+
 AT SELECTION-SCREEN OUTPUT.
   LOOP AT SCREEN.
 
@@ -20,10 +24,30 @@ AT SELECTION-SCREEN OUTPUT.
         ENDIF.
     ENDCASE.
 
-    " Optionally hide a specific field when RDO3 is selected
+    " Hide the checkbox when RDO3 is selected
     IF RDO3 = 'X' AND SCREEN-NAME = 'CH_BOX'.
       SCREEN-INVISIBLE = '1'.
     ENDIF.
 
     MODIFY SCREEN.
   ENDLOOP.
+
+*------------------------------------------------------------*
+* Field layout: position checkbox under radio buttons
+*------------------------------------------------------------*
+SELECTION-SCREEN SKIP. " Skip one line for readability
+PARAMETERS: CH_BOX AS CHECKBOX. " Below radio buttons
+SELECTION-SCREEN END OF BLOCK B1.
+
+*------------------------------------------------------------*
+* Selection screen field visibility by radio button choice
+*------------------------------------------------------------*
+*   Radio Button   |   GR1   |   GR2   |   GR3   
+ 
+|   CH_BOX   |
+
+*------------------+---------+---------+---------+------------*
+*      RDO1        |   ✔️     |   ❌     |   ❌     |    ✔️ show   |
+*      RDO2        |   ❌     |   ✔️     |   ❌     |    ✔️ show   |
+*      RDO3        |   ❌     |   ❌     |   ✔️     |    ❌ hide   |
+*------------------------------------------------------------*
