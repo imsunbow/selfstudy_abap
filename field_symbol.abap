@@ -11,6 +11,7 @@ LOOP AT GT_RESULT ASSIGNING <LS_ROW>.
     ASSIGN COMPONENT LV_FIELDNAME OF STRUCTURE <LS_ROW> TO <LV_VALUE>
 
     IF SY-SUBRC = 0 AND <LV_VALUE> IS ASSIGNED.
+      CONTINUE. " Skip this row if field not found or assignment failed
 
       " Example : Set default value if field is initial
       IF <LV_VALUE> IS INITIAL. " If field data is empty
